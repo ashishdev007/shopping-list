@@ -41,14 +41,14 @@ class App extends Component {
                 <Sidebar show={this.state.sideDrawerOpen} />
 
                 {this.getBackDrop()}
-                <main className="ui container">
+                <div id="main" className="ui container">
                     <div className="ui grid">
                         <div className="two wide column"></div>
-                        <content className="twelve wide column">
+                        <div className="twelve wide column">
                             <ShopItems />
-                        </content>
+                        </div>
                     </div>
-                </main>
+                </div>
             </main>
         );
     }
