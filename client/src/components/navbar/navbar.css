@@ -1,0 +1,30 @@
+#navbar {
+    max-height: 62px;
+}
+
+#hamburger.hide {
+    visibility: hidden;
+}
+
+i.icon.hide::before {
+    content: "none";
+}
+
+#hamburger.show {
+    visibility: visible;
+}
+
+@media (max-width: 768px) {
+    #navbar-nav_items {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    #hamburger {
+        display: none;
+    }
+    #hamburger-container {
+        display: none;
+    }
+}
