@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+
 import Navbar from "./navbar/navbar.jsx";
 import Sidebar from "./sideDrawer/sideDrawer.jsx";
 import BackDrop from "./Backdrop/Backdrop.jsx";
+import ShopItems from "./ShopItems/ShopItems.jsx";
 import "./App.css";
 
 class App extends Component {
@@ -39,9 +41,14 @@ class App extends Component {
                 <Sidebar show={this.state.sideDrawerOpen} />
 
                 {this.getBackDrop()}
-                <div className="ui container" style={{ paddingTop: "65px" }}>
-                    <div className="content">This is some content.</div>
-                </div>
+                <main className="ui container">
+                    <div className="ui grid">
+                        <div className="two wide column"></div>
+                        <content className="twelve wide column">
+                            <ShopItems />
+                        </content>
+                    </div>
+                </main>
             </main>
         );
     }
