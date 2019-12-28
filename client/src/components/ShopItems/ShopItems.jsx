@@ -41,10 +41,7 @@ class ShopItems extends Component {
     render() {
         return (
             <div className="itemsContainer">
-                <div className="content">
-                    <h1 className="ui header">This is some content.</h1>
-                    {this.renderItems()}
-                </div>
+                <div className="content">{this.renderItems()}</div>
             </div>
         );
     }
@@ -55,19 +52,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, { deleteItem })(ShopItems);
-
-// <div className="SingleItemContainer">
-//             {/* <div className="trashIconContainer">
-//                 <i className="trash icon"></i>
-//             </div> */}
-//             <div className="ui segment">
-//                 <i className="trash icon"></i>
-//             </div>
-//             <div
-//                 key={item._id}
-//                 className="ui segment item"
-//                 onClick={() => this.props.deleteItem(item._id)}
-//             >
-//                 {item.name}
-//             </div>
-//         </div>
