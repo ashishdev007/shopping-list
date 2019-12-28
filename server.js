@@ -1,11 +1,9 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 
-const items = require("./routes/api/items");
-
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -30,12 +28,17 @@ const db = require("./config/keys").mongoURI;
 
 //Connect to Mongo
 mongoose
-    .connect(db)
+    .connect(db, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true
+    })
     .then(() => console.log("Connected to database!"))
     .catch(err => console.log(err));
 
 //Routes
-app.use("/api/items", items);
+app.use("/api/items", require("./routes/api/items"));
+app.use("/api/users", require("./routes/api/users"));
 
 const port = process.env.PORT || 1500;
 
