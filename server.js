@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
+const config = require("config");
 
 app.use(express.json());
 
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 });
 
 //DB Config
-const db = require("./config/keys").mongoURI;
+const db = config.get("mongoURI");
 
 //Connect to Mongo
 mongoose
@@ -39,6 +39,7 @@ mongoose
 //Routes
 app.use("/api/items", require("./routes/api/items"));
 app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
 
 const port = process.env.PORT || 1500;
 
