@@ -19,6 +19,6 @@ mongoose
 //Routes
 app.use("/api/items", items);
 
-const port = process.env.PORT || 1500;
+const port = process.env.PORT || 3500;
 
 app.listen(port, () => console.log("Server started on port " + port));

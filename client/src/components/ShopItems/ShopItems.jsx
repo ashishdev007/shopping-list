@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deleteItem } from "../../actions";
+import { fetchItems, deleteItem } from "../../actions/itemsActions";
 
 import "./ShopItems.css";
 
 class ShopItems extends Component {
+    componentDidMount() {
+        this.props.fetchItems();
+    }
+
     moveOver = event => {
         event.currentTarget.children[1].style.transform = "translateX(6.25%)";
     };
@@ -51,4 +55,4 @@ const mapStateToProps = state => {
     return { items: Object.values(state.items) };
 };
 
-export default connect(mapStateToProps, { deleteItem })(ShopItems);
+export default connect(mapStateToProps, { fetchItems, deleteItem })(ShopItems);

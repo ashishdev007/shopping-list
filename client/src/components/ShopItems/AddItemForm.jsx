@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./AddItemForm.css";
 
 class AddItemForm extends Component {
@@ -84,4 +85,4 @@ class AddItemForm extends Component {
     }
 }
 
-export default AddItemForm;
+export default connect(null)(AddItemForm);
