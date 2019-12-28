@@ -52,7 +52,7 @@ class ShopItems extends Component {
 }
 
 const mapStateToProps = state => {
-    return { items: Object.values(state.items) };
+    return { items: Object.values(state.items.values) };
 };
 
 export default connect(mapStateToProps, { fetchItems, deleteItem })(ShopItems);

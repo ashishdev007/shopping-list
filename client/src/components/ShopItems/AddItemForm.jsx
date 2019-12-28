@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { addItem } from "../../actions/itemsActions";
 import "./AddItemForm.css";
 
 class AddItemForm extends Component {
@@ -13,7 +14,8 @@ class AddItemForm extends Component {
         if (!this.state.item) {
             this.setState({ error: true });
         } else {
-            console.log("Success");
+            this.props.addItem(this.state.item);
+            this.props.onDismiss();
         }
     };
 
@@ -85,4 +87,4 @@ class AddItemForm extends Component {
     }
 }
 
-export default connect(null)(AddItemForm);
+export default connect(null, { addItem })(AddItemForm);

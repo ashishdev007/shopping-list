@@ -8,7 +8,7 @@ const Modal = props => {
             className="ui dimmer modals visible active"
             onClick={props.onDismiss}
         >
-            <AddItemForm />
+            <AddItemForm onDismiss={props.onDismiss} />
         </div>,
         document.querySelector("#addItem")
     );
