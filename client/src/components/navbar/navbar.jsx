@@ -26,6 +26,9 @@ class navBar extends Component {
                     </div>
                     <div className="spacer" style={{ flex: 1 }}></div>
                     <div id="navbar-nav_items" className="right menu">
+                        <Link to="/login" className="right aligned item">
+                            Log-in
+                        </Link>
                         <Link to="/register" className="right aligned item">
                             Sign-up
                         </Link>

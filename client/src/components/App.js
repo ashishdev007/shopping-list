@@ -11,6 +11,7 @@ import BackDrop from "./Backdrop/Backdrop.jsx";
 
 import Main from "./ShopItems/Main.jsx";
 import Register from "./auth/RegisterForm.jsx";
+import Login from "./auth/LoginForm.jsx";
 
 import "./App.css";
 
@@ -53,6 +54,7 @@ class App extends Component {
 
                     <Route path="/" component={Main} />
                     <Route path="/register" component={Register} />
+                    <Route path="/login" component={Login} />
                 </Router>
             </main>
         );
