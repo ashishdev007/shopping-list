@@ -14,11 +14,8 @@ class sideDrawer extends Component {
         return (
             <div id="sidebar" className={this.getClass()}>
                 <div className="items" style={{ marginTop: "2%" }}>
-                    <a href="/" className="active big item">
-                        Account
-                    </a>
                     <a href="/" className="big item">
-                        Settings
+                        Log-in
                     </a>
                 </div>
             </div>

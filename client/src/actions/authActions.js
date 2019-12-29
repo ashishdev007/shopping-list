@@ -15,18 +15,18 @@ export const loadUser = () => async (dispatch, getState) => {
     dispatch({ type: USER_LOADING });
 
     try {
-        res = await axios.get("/api/auth/user", tokenConfig(getState()));
+        const res = await axios.get("/api/auth/user", tokenConfig(getState()));
 
         dispatch({ type: USER_LOADED, payload: res.data });
     } catch (err) {
-        dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch(returnErrors(err.response.data.msg, err.response.status));
         dispatch({ type: AUTH_ERROR });
     }
 };
 
 export const register = ({ name, email, password }) => async dispatch => {
     try {
-        res = await axios.post(
+        const res = await axios.post(
             "/api/users",
             { name, email, password },
             { headers: { "Content-type": "application/json" } }
@@ -35,7 +35,11 @@ export const register = ({ name, email, password }) => async dispatch => {
         dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     } catch (err) {
         dispatch(
-            returnErrors(err.response.data, err.response.status, REGISTER_FAIL)
+            returnErrors(
+                err.response.data.msg,
+                err.response.status,
+                REGISTER_FAIL
+            )
         );
         dispatch({ type: REGISTER_FAIL });
     }
@@ -43,7 +47,7 @@ export const register = ({ name, email, password }) => async dispatch => {
 
 export const login = ({ email, password }) => async dispatch => {
     try {
-        res = await axios.post(
+        const res = await axios.post(
             "/api/auth",
             { email, password },
             { headers: { "Content-type": "application/json" } }
@@ -51,7 +55,7 @@ export const login = ({ email, password }) => async dispatch => {
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     } catch (err) {
         dispatch(
-            returnErrors(err.response.data, err.response.status, LOGIN_FAIL)
+            returnErrors(err.response.data.msg, err.response.status, LOGIN_FAIL)
         );
         dispatch({ type: LOGIN_FAIL });
     }
