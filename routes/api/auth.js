@@ -7,6 +7,7 @@ const auth = require("../../middleware/auth");
 
 const User = require("../../models/User");
 
+//Login a user
 router.post("/", async (req, res) => {
     const { email, password } = req.body;
 
@@ -49,6 +50,7 @@ router.post("/", async (req, res) => {
         });
 });
 
+//Get the logged in user's info
 router.get("/user", auth, async (req, res) => {
     const user = await User.findById(req.user.id).select("-password");
 

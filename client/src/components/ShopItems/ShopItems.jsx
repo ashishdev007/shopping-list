@@ -3,11 +3,41 @@ import { connect } from "react-redux";
 import { fetchItems, deleteItem } from "../../actions/itemsActions";
 
 import "./ShopItems.css";
+import axios from "../../apis/axios";
 
 class ShopItems extends Component {
     componentDidMount() {
         this.props.fetchItems();
+        // this.test();
     }
+
+    test = async () => {
+        console.log("Hey");
+        const body = JSON.stringify({
+            name: "Tester",
+            email: "aa@b.com",
+            password: "abc123"
+        });
+        try {
+            const res = await axios.post(
+                "/api/users",
+                {
+                    name: "Tester",
+                    email: "aaabbb@b.com",
+                    password: "abc123"
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+
+            console.log(res);
+        } catch (e) {
+            console.log(e.response);
+        }
+    };
 
     moveOver = event => {
         event.currentTarget.children[1].style.transform = "translateX(6.25%)";
