@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
+import { logout } from "../../actions/authActions";
+import { connect } from "react-redux";
+
 import "./sideDrawer.css";
 
 class sideDrawer extends Component {
@@ -14,13 +19,23 @@ class sideDrawer extends Component {
         return (
             <div id="sidebar" className={this.getClass()}>
                 <div className="items" style={{ marginTop: "2%" }}>
-                    <a href="/" className="big item">
+                    <Link to="/login" className="right aligned item">
                         Log-in
-                    </a>
+                    </Link>
+                    <Link to="/register" className="right aligned item">
+                        Sign-up
+                    </Link>
+                    <Link
+                        to="#"
+                        className="right aligned item"
+                        onClick={() => this.props.logout()}
+                    >
+                        Log-out
+                    </Link>
                 </div>
             </div>
         );
     }
 }
 
-export default sideDrawer;
+export default connect(null, { logout })(sideDrawer);

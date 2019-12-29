@@ -18,6 +18,10 @@ import "./App.css";
 class App extends Component {
     state = { sideDrawerOpen: false };
 
+    componentDidMount() {
+        this.props.loadUser();
+    }
+
     toggleSideDraw = () => {
         this.setState(prevState => {
             return { sideDrawerOpen: !prevState.sideDrawerOpen };

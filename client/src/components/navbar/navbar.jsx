@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import Hamburger from "./hamburger.jsx";
+import { logout } from "../../actions/authActions";
+import { connect } from "react-redux";
 import "./navbar.css";
 class navBar extends Component {
     render() {
@@ -32,6 +34,13 @@ class navBar extends Component {
                         <Link to="/register" className="right aligned item">
                             Sign-up
                         </Link>
+                        <Link
+                            to="#"
+                            className="right aligned item"
+                            onClick={() => this.props.logout()}
+                        >
+                            Log-out
+                        </Link>
                     </div>
                 </div>
             </React.Fragment>
@@ -39,4 +48,4 @@ class navBar extends Component {
     }
 }
 
-export default navBar;
+export default connect(null, { logout })(navBar);
