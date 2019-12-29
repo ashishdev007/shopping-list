@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { Router, Route } from "react-router-dom";
 
+import { connect } from "react-redux";
+import { loadUser } from "../actions/authActions";
+
 import history from "../history";
 import Navbar from "./navbar/navbar.jsx";
 import Sidebar from "./sideDrawer/sideDrawer.jsx";
 import BackDrop from "./Backdrop/Backdrop.jsx";
 
 import Main from "./ShopItems/Main.jsx";
-import Register from "../modals/Register.jsx";
+import Register from "./auth/RegisterForm.jsx";
 
 import "./App.css";
 
@@ -56,4 +59,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect(null, { loadUser })(App);

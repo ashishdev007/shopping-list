@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { register } from "../../actions/authActions";
+import ModalForm from "../../modals/modalForm.jsx";
+import history from "../../history";
 
 class Login extends Component {
     state = {
@@ -42,59 +44,70 @@ class Login extends Component {
         return null;
     };
 
-    render() {
-        console.log(this.state);
+    content = () => {
+        return (
+            <React.Fragment>
+                {this.showError()}
+                <form className="ui big form" onSubmit={this.onSubmit}>
+                    <div className="field">
+                        <label htmlFor="name">Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            onChange={this.handleInputChange}
+                        />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="text"
+                            name="email"
+                            onChange={this.handleInputChange}
+                        />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            onChange={this.handleInputChange}
+                        />
+                    </div>
+                </form>
+            </React.Fragment>
+        );
+    };
+
+    actions = () => {
         return (
             <div
-                className="ui tiny test visible modal transition active"
-                onClick={event => event.stopPropagation()}
+                className="ui large teal right labeled icon button"
+                onClick={this.onSubmit}
             >
-                <div className="header">Please Enter your Info</div>
-                <div className="content">
-                    {this.showError()}
-                    <form className="ui big form" onSubmit={this.onSubmit}>
-                        <div className="field">
-                            <label htmlFor="name">Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                onChange={this.handleInputChange}
-                            />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="email">Email</label>
-                            <input
-                                type="text"
-                                name="email"
-                                onChange={this.handleInputChange}
-                            />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="password">Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                onChange={this.handleInputChange}
-                            />
-                        </div>
-                    </form>
-                </div>
-                <div className="actions">
-                    <div
-                        className="ui large teal right labeled icon button"
-                        onClick={this.onSubmit}
-                    >
-                        Submit
-                        <i className="checkmark icon"></i>
-                    </div>
-                </div>
+                Submit
+                <i className="checkmark icon"></i>
             </div>
+        );
+    };
+
+    render() {
+        if (this.props.isAuthenticated) {
+            history.push("/");
+        }
+
+        return (
+            <ModalForm
+                onDismiss={() => history.push("/")}
+                header="Please Enter your Info"
+                content={this.content()}
+                actions={this.actions()}
+            />
         );
     }
 }
 
 const mapStateToProps = state => {
-    return { error: state.error };
+    return { error: state.error, isAuthenticated: state.auth.isAuthenticated };
 };
 
 export default connect(mapStateToProps, { register })(Login);

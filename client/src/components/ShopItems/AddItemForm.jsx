@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import { addItem } from "../../actions/itemsActions";
+
+import ModalForm from "../../modals/modalForm.jsx";
 import "./AddItemForm.css";
 
 class AddItemForm extends Component {
@@ -55,34 +58,46 @@ class AddItemForm extends Component {
             );
         }
     };
+
+    getContent = () => {
+        return (
+            <form
+                className="ui big form"
+                // onSubmit={this.onSubmit}
+                style={{ textAlign: "right" }}
+            >
+                <div className={this.errorClass()}>
+                    <input
+                        type="text"
+                        name="item"
+                        onChange={this.handleInputChange}
+                    />
+                    {this.showWarning()}
+                </div>
+            </form>
+        );
+    };
+
+    getActions = () => {
+        return (
+            <button
+                className="ui large teal right labeled icon button"
+                type="submit"
+                onClick={this.onSubmit}
+            >
+                Submit
+                <i className="checkmark icon"></i>
+            </button>
+        );
+    };
     render() {
         return (
-            <div
-                className="ui tiny test visible modal transition active"
-                onClick={event => event.stopPropagation()}
-            >
-                <div className="header">Please Enter an Item</div>
-                <div className="content">
-                    <form
-                        className="ui big form"
-                        onSubmit={this.onSubmit}
-                        style={{ textAlign: "right" }}
-                    >
-                        <div className={this.errorClass()}>
-                            <input
-                                type="text"
-                                name="item"
-                                onChange={this.handleInputChange}
-                            />
-                            {this.showWarning()}
-                        </div>
-                        <button className={this.buttonClass()} type="submit">
-                            Submit
-                            <i className="checkmark icon"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
+            <ModalForm
+                onDismiss={this.props.onDismiss}
+                header="Please Enter an Item"
+                content={this.getContent()}
+                actions={this.getActions()}
+            />
         );
     }
 }
