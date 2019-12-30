@@ -7,10 +7,15 @@ import history from "../../history";
 
 class Login extends Component {
     state = {
-        name: null,
         email: null,
         password: null
     };
+
+    componentDidUpdate() {
+        if (this.props.isAuthenticated) {
+            history.push("/");
+        }
+    }
 
     onSubmit = event => {
         event.preventDefault();
@@ -82,19 +87,31 @@ class Login extends Component {
         );
     };
 
+    onDismiss = () => {
+        history.push("/");
+    };
+
+    test = (
+        <ModalForm
+            onDismiss={this.onDismiss}
+            header="Please Enter your Credentials"
+            content={this.content()}
+            actions={this.actions()}
+        />
+    );
     render() {
         if (this.props.isAuthenticated) {
-            history.push("/");
+            return null;
+        } else {
+            return (
+                <ModalForm
+                    onDismiss={this.onDismiss}
+                    header="Please Enter your Credentials"
+                    content={this.content()}
+                    actions={this.actions()}
+                />
+            );
         }
-
-        return (
-            <ModalForm
-                onDismiss={() => history.push("/")}
-                header="Please Enter your Credentials"
-                content={this.content()}
-                actions={this.actions()}
-            />
-        );
     }
 }
 

@@ -12,6 +12,12 @@ class Login extends Component {
         password: null
     };
 
+    componentDidUpdate() {
+        if (this.props.isAuthenticated) {
+            history.push("/");
+        }
+    }
+
     onSubmit = event => {
         event.preventDefault();
         const { name, email, password } = this.state;
@@ -92,7 +98,7 @@ class Login extends Component {
 
     render() {
         if (this.props.isAuthenticated) {
-            history.push("/");
+            return null;
         }
 
         return (

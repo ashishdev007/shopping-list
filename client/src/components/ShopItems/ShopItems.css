@@ -1,3 +1,8 @@
+#loginWarning {
+    width: 70%;
+    margin: auto;
+}
+
 .itemsContainer {
     height: auto;
     width: 100%;
@@ -33,4 +38,8 @@
     z-index: 50;
     background-color: white;
     max-height: 100%;
+}
+
+#noneditableList {
+    margin-top: 4.5vh;
 }

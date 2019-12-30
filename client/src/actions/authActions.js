@@ -15,7 +15,6 @@ export const loadUser = () => async (dispatch, getState) => {
     dispatch({ type: USER_LOADING });
 
     try {
-        console.log(getState());
         const res = await axios.get("/api/auth/user", tokenConfig(getState()));
 
         dispatch({ type: USER_LOADED, payload: res.data });
@@ -75,7 +74,6 @@ const tokenConfig = state => {
     if (state.auth.token) {
         config.headers["x-auth-token"] = state.auth.token;
     }
-    console.log(config);
 
     return config;
 };

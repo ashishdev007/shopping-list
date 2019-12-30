@@ -6,7 +6,7 @@ import { logout } from "../../actions/authActions";
 
 class navLink extends Component {
     renderAuth = () => {
-        if (!this.props.user) {
+        if (!this.props.isAuthenticated) {
             return (
                 <React.Fragment>
                     <Link to="/login" className="right aligned item">
@@ -35,7 +35,7 @@ class navLink extends Component {
 }
 
 const mapStateToProps = state => {
-    return { user: state.auth.user };
+    return { isAuthenticated: state.auth.isAuthenticated };
 };
 
 export default connect(mapStateToProps, { logout })(navLink);

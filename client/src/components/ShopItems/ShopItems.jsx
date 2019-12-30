@@ -8,36 +8,7 @@ import axios from "../../apis/axios";
 class ShopItems extends Component {
     componentDidMount() {
         this.props.fetchItems();
-        // this.test();
     }
-
-    test = async () => {
-        console.log("Hey");
-        const body = JSON.stringify({
-            name: "Tester",
-            email: "aa@b.com",
-            password: "abc123"
-        });
-        try {
-            const res = await axios.post(
-                "/api/users",
-                {
-                    name: "Tester",
-                    email: "aaabbb@b.com",
-                    password: "abc123"
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            );
-
-            console.log(res);
-        } catch (e) {
-            console.log(e.response);
-        }
-    };
 
     moveOver = event => {
         event.currentTarget.children[1].style.transform = "translateX(6.25%)";
@@ -47,7 +18,7 @@ class ShopItems extends Component {
         event.currentTarget.children[1].style.transform = "translateX(0)";
     };
 
-    renderItems = () => {
+    editableItems = () => {
         var { items } = this.props;
         return items.map(item => {
             return (
@@ -72,17 +43,36 @@ class ShopItems extends Component {
         });
     };
 
+    noneditableItems = () => {
+        var { items } = this.props;
+        return items.map(item => {
+            return (
+                <div key={item._id} className="ui segment">
+                    <p>{item.name}</p>
+                </div>
+            );
+        });
+    };
+
     render() {
         return (
             <div className="itemsContainer">
-                <div className="content">{this.renderItems()}</div>
+                <div className="content">
+                    {this.props.user ? (
+                        this.editableItems()
+                    ) : (
+                        <div id="noneditableList" className="ui piled segments">
+                            {this.noneditableItems()}
+                        </div>
+                    )}
+                </div>
             </div>
         );
     }
 }
 
 const mapStateToProps = state => {
-    return { items: Object.values(state.items.values) };
+    return { items: Object.values(state.items.values), user: state.auth.user };
 };
 
 export default connect(mapStateToProps, { fetchItems, deleteItem })(ShopItems);
