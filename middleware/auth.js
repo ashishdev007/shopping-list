@@ -6,17 +6,20 @@ auth = (req, res, next) => {
 
     if (!token) {
         res.status(401).json({ msg: "No token, authorization denied" });
-    }
+        res.end();
+    } else {
+        try {
+            //Verify token
+            const decoded = jwt.verify(token, config.get("jwtSecret"));
 
-    try {
-        //Verify token
-        const decoded = jwt.verify(token, config.get("jwtSecret"));
+            //Add user from payload
+            req.user = decoded;
 
-        //Add user from payload
-        req.user = decoded;
-        next();
-    } catch (e) {
-        res.status(400).json({ msg: "Token isn't valid" });
+            res.end();
+        } catch (e) {
+            console.log(e);
+            res.status(400).json({ msg: "Token isn't valid" });
+        }
     }
 };
 
