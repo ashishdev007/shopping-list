@@ -5,9 +5,9 @@ import { connect } from "react-redux";
 import { loadUser } from "../actions/authActions";
 
 import history from "../history";
-import Navbar from "./navbar/navbar.jsx";
-import Sidebar from "./sideDrawer/sideDrawer.jsx";
-import BackDrop from "./Backdrop/Backdrop.jsx";
+import Navbar from "./navigation/navbar/navbar.jsx";
+import Sidebar from "./navigation/sideDrawer/sideDrawer.jsx";
+import BackDrop from "./navigation/Backdrop/Backdrop.jsx";
 
 import Main from "./ShopItems/Main.jsx";
 import Register from "./auth/RegisterForm.jsx";

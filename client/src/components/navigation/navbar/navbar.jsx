@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 import Hamburger from "./hamburger.jsx";
-import { logout } from "../../actions/authActions";
-import { connect } from "react-redux";
+import NavLinks from "../navLinks.jsx";
 import "./navbar.css";
+
 class navBar extends Component {
     render() {
         return (
@@ -28,19 +27,7 @@ class navBar extends Component {
                     </div>
                     <div className="spacer" style={{ flex: 1 }}></div>
                     <div id="navbar-nav_items" className="right menu">
-                        <Link to="/login" className="right aligned item">
-                            Log-in
-                        </Link>
-                        <Link to="/register" className="right aligned item">
-                            Sign-up
-                        </Link>
-                        <Link
-                            to="#"
-                            className="right aligned item"
-                            onClick={() => this.props.logout()}
-                        >
-                            Log-out
-                        </Link>
+                        <NavLinks />
                     </div>
                 </div>
             </React.Fragment>
@@ -48,4 +35,4 @@ class navBar extends Component {
     }
 }
 
-export default connect(null, { logout })(navBar);
+export default navBar;
