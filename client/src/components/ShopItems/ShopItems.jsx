@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { fetchItems, deleteItem } from "../../actions/itemsActions";
 
 import "./ShopItems.css";
-import axios from "../../apis/axios";
 import Loader from "../../modals/Loader";
 
 class ShopItems extends Component {
@@ -56,9 +55,7 @@ class ShopItems extends Component {
     };
 
     render() {
-        console.log(this.props);
         if (this.props.loadingItems) {
-            console.log("Loadin Items");
             return <Loader />;
         }
         return (

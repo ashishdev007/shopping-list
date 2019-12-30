@@ -49,7 +49,7 @@ class Main extends Component {
                     <div className="twelve wide column">
                         {/* Header and Divider */}
                         <h1 className="ui center aligned header">List Items</h1>
-                        <div class="ui center aligned divider"></div>
+                        <div className="ui center aligned divider"></div>
 
                         {!this.props.isAuthenticated
                             ? this.showWarning()
@@ -61,10 +61,10 @@ class Main extends Component {
                         {this.props.isAuthenticated ? (
                             <button
                                 id="addButton"
-                                class="big circular teal ui icon button"
+                                className="big circular teal ui icon button"
                                 onClick={() => this.setState({ addItem: true })}
                             >
-                                <i class="icon plus"></i>
+                                <i className="icon plus"></i>
                             </button>
                         ) : null}
 

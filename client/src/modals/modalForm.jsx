@@ -1,7 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import history from "../history";
-// import RegisterForm from "../components/auth/RegisterForm.jsx";
 
 const LoginModal = props => {
     return ReactDOM.createPortal(
