@@ -1,9 +1,10 @@
-import { FETCH_ITEMS, ADD_ITEM, DELETE_ITEM } from "./types";
+import { FETCH_ITEMS, LOADING_ITEMS, ADD_ITEM, DELETE_ITEM } from "./types";
 import axios from "../apis/axios";
 import { returnErrors } from "./errorActions";
 
 ///Make a get token method
 export const fetchItems = () => async dispatch => {
+    dispatch({ type: LOADING_ITEMS });
     try {
         const res = await axios.get("/api/items");
 
@@ -30,7 +31,6 @@ export const addItem = name => async (dispatch, getState) => {
             }
         );
 
-        console.log(res);
         dispatch({
             type: ADD_ITEM,
             payload: res.data

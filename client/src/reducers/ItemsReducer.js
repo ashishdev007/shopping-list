@@ -1,4 +1,9 @@
-import { FETCH_ITEMS, ADD_ITEM, DELETE_ITEM } from "../actions/types";
+import {
+    FETCH_ITEMS,
+    LOADING_ITEMS,
+    ADD_ITEM,
+    DELETE_ITEM
+} from "../actions/types";
 import mapkeys from "lodash.mapkeys";
 import omit from "lodash.omit";
 
@@ -9,6 +14,8 @@ const INITIAL_STATE = {
 
 const itemsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case LOADING_ITEMS:
+            return { ...state, loading: true };
         case FETCH_ITEMS:
             return {
                 ...state,

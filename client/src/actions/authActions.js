@@ -19,7 +19,6 @@ export const loadUser = () => async (dispatch, getState) => {
 
         dispatch({ type: USER_LOADED, payload: res.data });
     } catch (err) {
-        console.log(err);
         dispatch(
             returnErrors(err.response.data.msg, err.response.status, "NO_LOAD")
         );
