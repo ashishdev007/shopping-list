@@ -18,7 +18,7 @@ const LoginModal = props => {
                 <div className="actions">{props.actions}</div>
             </div>
         </div>,
-        document.querySelector("#addItem")
+        document.querySelector("#modal")
     );
 };
 

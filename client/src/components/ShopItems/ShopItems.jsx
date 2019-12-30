@@ -4,6 +4,7 @@ import { fetchItems, deleteItem } from "../../actions/itemsActions";
 
 import "./ShopItems.css";
 import axios from "../../apis/axios";
+import Loader from "../../modals/Loader";
 
 class ShopItems extends Component {
     componentDidMount() {
@@ -55,10 +56,15 @@ class ShopItems extends Component {
     };
 
     render() {
+        console.log(this.props);
+        if (this.props.loadingItems) {
+            console.log("Loadin Items");
+            return <Loader />;
+        }
         return (
             <div className="itemsContainer">
                 <div className="content">
-                    {this.props.user ? (
+                    {this.props.isAuthenticated ? (
                         this.editableItems()
                     ) : (
                         <div id="noneditableList" className="ui piled segments">
@@ -72,7 +78,11 @@ class ShopItems extends Component {
 }
 
 const mapStateToProps = state => {
-    return { items: Object.values(state.items.values), user: state.auth.user };
+    return {
+        items: Object.values(state.items.values),
+        loadingItems: state.items.loading,
+        isAuthenticated: state.auth.isAuthenticated
+    };
 };
 
 export default connect(mapStateToProps, { fetchItems, deleteItem })(ShopItems);

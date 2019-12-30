@@ -4,12 +4,19 @@ import { connect } from "react-redux";
 import { login } from "../../actions/authActions";
 import ModalForm from "../../modals/modalForm.jsx";
 import history from "../../history";
+import Loader from "../../modals/Loader";
 
 class Login extends Component {
     state = {
         email: null,
         password: null
     };
+
+    componentDidMount() {
+        if (this.props.isAuthenticated) {
+            history.push("/");
+        }
+    }
 
     componentDidUpdate() {
         if (this.props.isAuthenticated) {
@@ -100,8 +107,8 @@ class Login extends Component {
         />
     );
     render() {
-        if (this.props.isAuthenticated) {
-            return null;
+        if (this.props.isLoading) {
+            return <Loader />;
         } else {
             return (
                 <ModalForm
@@ -116,7 +123,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-    return { error: state.error, isAuthenticated: state.auth.isAuthenticated };
+    const { isAuthenticated, isLoading } = state.auth;
+    return { error: state.error, isAuthenticated, isLoading };
 };
 
 export default connect(mapStateToProps, { login })(Login);
