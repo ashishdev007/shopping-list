@@ -37,9 +37,13 @@ router.post("/", async (req, res) => {
             newUser.save().then(user => {
                 //Create Token
 
+                const secret = config.get("jwtSecret")
+                    ? config.get("jwtSecret")
+                    : process.env.jwtSecret;
+
                 jwt.sign(
                     { id: user.id },
-                    config.get("jwtSecret"),
+                    secret,
                     { expiresIn: 3600 },
                     (err, token) => {
                         if (err) throw err;

@@ -31,9 +31,13 @@ router.post("/", async (req, res) => {
                 return res.status(400).json({ msg: "Invalid Credentials" });
             }
 
+            const secret = config.get("jwtSecret")
+                ? config.get("jwtSecret")
+                : process.env.jwtSecret;
+
             jwt.sign(
                 { id: user.id },
-                config.get("jwtSecret"),
+                secret,
                 { expiresIn: 3600 },
                 (err, token) => {
                     if (err) throw err;
