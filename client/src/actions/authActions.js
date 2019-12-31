@@ -9,7 +9,7 @@ import {
     REGISTER_FAIL
 } from "./types";
 import { returnErrors } from "./errorActions";
-import axios from "../apis/axios";
+import axios from "axios";
 
 export const loadUser = () => async (dispatch, getState) => {
     dispatch({ type: USER_LOADING });
