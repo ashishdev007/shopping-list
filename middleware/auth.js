@@ -10,9 +10,10 @@ auth = (req, res, next) => {
     } else {
         try {
             //Verify token
-            const secret = config.get("jwtSecret")
-                ? config.get("jwtSecret")
-                : process.env.jwtSecret;
+            const secret = process.env.jwtSecret;
+            // const secret = config.get("jwtSecret")
+            //     ? config.get("jwtSecret")
+            //     : process.env.jwtSecret;
             const decoded = jwt.verify(token, secret);
 
             //Add user from payload
