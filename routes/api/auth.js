@@ -32,9 +32,6 @@ router.post("/", async (req, res) => {
             }
 
             const secret = process.env.jwtSecret || config.get("jwtSecret");
-            // const secret = config.get("jwtSecret")
-            //     ? config.get("jwtSecret")
-            //     : process.env.jwtSecret;
 
             jwt.sign(
                 { id: user.id },

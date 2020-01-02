@@ -31,7 +31,6 @@ class Login extends Component {
     };
 
     handleInputChange = event => {
-        console.log("trigger");
         const target = event.target;
         const value =
             target.type === "checkbox" ? target.checked : target.value;

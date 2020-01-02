@@ -6,14 +6,12 @@ auth = (req, res, next) => {
 
     if (!token) {
         res.status(401).json({ msg: "No token, authorization denied" });
-        next();
+        res.end();
     } else {
         try {
             //Verify token
             const secret = process.env.jwtSecret || config.get("jwtSecret");
-            // const secret = config.get("jwtSecret")
-            //     ? config.get("jwtSecret")
-            //     : process.env.jwtSecret;
+
             const decoded = jwt.verify(token, secret);
 
             //Add user from payload
