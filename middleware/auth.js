@@ -6,7 +6,7 @@ auth = (req, res, next) => {
 
     if (!token) {
         res.status(401).json({ msg: "No token, authorization denied" });
-        res.end();
+        next();
     } else {
         try {
             //Verify token
@@ -19,7 +19,7 @@ auth = (req, res, next) => {
             //Add user from payload
             req.user = decoded;
 
-            res.end();
+            next();
         } catch (e) {
             console.log(e);
             res.status(400).json({ msg: "Token isn't valid" });
