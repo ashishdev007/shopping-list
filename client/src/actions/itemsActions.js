@@ -1,5 +1,5 @@
 import { FETCH_ITEMS, LOADING_ITEMS, ADD_ITEM, DELETE_ITEM } from "./types";
-import axios from "axios";
+import axios from "../apis/axios";
 import { returnErrors } from "./errorActions";
 
 ///Make a get token method

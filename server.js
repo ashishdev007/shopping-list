@@ -14,7 +14,7 @@ app.use(cors());
 //     ? config.get("mongoURI")
 //     : process.env.mongoURI;
 
-const db = process.env.mongoURI;
+const db = process.env.mongoURI || config.get("mongoURI");
 
 //Connect to Mongo
 mongoose
